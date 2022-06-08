@@ -18,12 +18,25 @@ pipeline{
 						echo 'action2'
 					}
 				}
+                stage('sub-job3'){
+                    steps{
+                        echo 'action3'
+                        sh 'lscpu'
+                        sh 'lsblk'
+                    }
+                }
+                stage('sub-job4'){
+                    steps{
+                        sh 'cat /etc/passwd'
+                        sh 'tail -10 /etc/passwd'
+                    }
+                }
 			}
 		}
 		stage('3-code-build'){
 			steps{
 				sh 'sort -r /etc/passwd'
-				sh 'ls -lth /etc/passwd'
+				sh 'ls -lrth /etc/passwd'
 			}
 		}
 	}
