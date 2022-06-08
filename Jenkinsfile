@@ -3,8 +3,7 @@ pipeline{
 	stages{
 		stage('1-git-clone'){
 			steps{
-				sh 'checkout'
-			}
+				sh 'checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'Github-id', url: 'https://github.com/akudogithub/jenkins-parallel-job.git']]])'			}
 		}
 		stage{
 			parallel{
